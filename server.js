@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express = require("express");
 
 const app = express();
@@ -24,3 +25,18 @@ app.get("/reserve", function(req, res) {
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+=======
+// Dependencies
+
+// Sets up the Express App
+
+// Sets up the Express app to handle data parsing
+
+// DATA
+
+// Routes
+
+// Create new table reservations
+
+// Starts the server to begin listening
+>>>>>>> 66e5e766d80501a15a336594e2254fbf77c2b8d0

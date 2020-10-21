@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "restaurant-reservations",
     "version": "1.0.0",
     "description": "",
@@ -17,3 +18,29 @@
     "author": "",
     "license": "ISC"
   }
+=======
+  "name": "Restaurant_Reservations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seahopki12/Restaurant_Reservations.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seahopki12/Restaurant_Reservations/issues"
+  },
+  "homepage": "https://github.com/seahopki12/Restaurant_Reservations#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "save": "^2.4.0"
+  }
+}
+>>>>>>> 66e5e766d80501a15a336594e2254fbf77c2b8d0
