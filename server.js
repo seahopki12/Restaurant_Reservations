@@ -11,13 +11,11 @@ const waitList = [];
 
 const reservations = [];
 
-app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
-})
+
 
 app.get("/tables", function (req, res) {
     res.sendFile(path.join(__dirname, "tables.html"));
-})
+});
 
 app.get("/reserve", function (req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
@@ -39,6 +37,10 @@ app.post("/api/tables", function (req, res) {
         waitList.push(req.body);
         res.end(false);
     };
+});
+
+app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(PORT, function () {
