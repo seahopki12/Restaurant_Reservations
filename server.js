@@ -1,13 +1,29 @@
-// Dependencies
+const express = require("express");
+const path = require("path");
 
-// Sets up the Express App
+const app = express();
+const PORT = 8080;
 
-// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// DATA
+const waitList = [];
 
-// Routes
+const reservations = [];
 
-// Create new table reservations
+app.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
 
-// Starts the server to begin listening
+app.get("/tables", function(req, res) {
+  res.json(reservations);
+  res.json(waitList);
+});
+
+app.get("/reserve", function(req, res) {
+  console.log("This is where the reservation form will go.")
+});
+
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
+});
