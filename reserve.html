@@ -45,7 +45,7 @@
                         <label for="uniqueid">Unique ID</label>
                         <input type="text" class="form-control" id="unique">
                       </div>
-                      <button type="button" class="btn btn-primary">Submit</button>
+                      <button type="button" class="btn btn-primary" id="submit-btn">Submit</button>
                   </form>
             </div>
         </div>
@@ -55,6 +55,47 @@
             <a href="">API Wait List</a>
         </div>
     </div>
+    <script type="text/javascript">
+
+$("#submit-btn").on("click", function(event) {
+    // preventDefault() is added below so the submission request isn't automatically sent. We want to go through and prep the data, first. 
+    event.preventDefault();
+// creates reservation array
+    const reservation = 
+      {
+      name: $("#namer").val().trim(),
+      phone: $("#phoner").val().trim(),
+      email: $("#emailr").val().trim(),
+      uniqueID: $("#uniqueIDr").val().trim()
+    };
+
+    const waitlist = 
+      {
+        name: $("#namew").val().trim(),
+        phone: $("#phonew").val().trim(),
+        email: $("#emailw").val().trim(),
+        uniqueID: $("#uniqueIDw").val().trim()
+      };
+ 
+    if(newReservation !== reservation) {
+      // posting reservations as an API to the tables (reservations/waitlist)
+     $.post("/api/reservation", newReservation)
+      .then(function(datar) {
+        console.log("tables.html", datar);
+        alert("Adding reservation...");
+      })
+    } else {
+      $.post("/api/waitlist", newWaitlist)
+      .then(function(dataw) {
+        console.log("tables.html", dataw);
+        alert("Adding to waitlist...");
+      })
+    };
+  });
+
+    </script>
+
+
 </body>
 
 </html>
