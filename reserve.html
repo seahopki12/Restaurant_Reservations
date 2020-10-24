@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-        crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Tables</title>
 </head>
@@ -19,8 +17,8 @@
             <div class="jumbotron">
                 <h1 class="display-4">Hot Restaurant</h1>
                 <p class="lead">Make your reservation</p>
-                <button type="button" class="btn btn-primary">View Tables</button>
-                <button type="button" class="btn btn-light"><i class="fa fa-home"></i></button>
+                <a href="/tables"><button type="button" class="btn btn-primary">View Tables</button></a>
+                <a href="/index"><button type="button" class="btn btn-light"><i class="fa fa-home"></i></button></a>
             </div>
         </div>
         <div class="card">
@@ -30,31 +28,62 @@
             <div class="card-body">
                 <form>
                     <div class="form-group">
-                      <label for="name">Name</label>
-                      <input type="text" class="form-control" id="name">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name">
                     </div>
                     <div class="form-group">
-                      <label for="phonenumber">Phone Number</label>
-                      <input type="text" class="form-control" id="phone">
+                        <label for="phonenumber">Phone Number</label>
+                        <input type="text" class="form-control" id="phone">
                     </div>
                     <div class="form-group">
                         <label for="emailaddress">email</label>
                         <input type="text" class="form-control" id="email">
-                      </div>
-                      <div class="form-group">
+                    </div>
+                    <div class="form-group">
                         <label for="uniqueid">Unique ID</label>
                         <input type="text" class="form-control" id="unique">
-                      </div>
-                      <button type="button" class="btn btn-primary">Submit</button>
-                  </form>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="search-button">Submit</button>
+                </form>
             </div>
         </div>
-        
+
         <div class="footer">
-            <a href="">API Table Link</a>
-            <a href="">API Wait List</a>
+            <a href="/api/tables">API Table Link</a>
+            <a href="/api/waitlist">API Wait List</a>
         </div>
     </div>
+    
+    <script type="text/javascript">
+        $("#search-btn").on("click", function () {
+            var customerName = $("#name").val().trim();
+            var customerPhone = $("#phone").val().trim();
+            var customerEmail = $("#email").val().trim();
+            var customerID = $("#unique").val().trim();
+
+            // Using a RegEx Pattern to remove spaces from searchedCharacter
+            // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+            customerName = customerName.replace(/\s+/g, "").toLowerCase();
+            customerPhone = customerPhone.replace(/\s+/g, "").toLowerCase();
+            customerEmail = customerEmail.replace(/\s+/g, "").toLowerCase();
+            customerID = customerID.replace(/\s+/g, "").toLowerCase();
+
+            var customer = {
+                name: customerName,
+                phone: customerPhone,
+                email: customerEmail,
+                id: customerID
+            }
+
+            const currentURL = window.location.origin; 
+
+            $.post(currentURL + "/api/tables", customer, function (data) {
+                console.log(data);
+            });
+
+        });
+
+    </script>
 </body>
 
 </html>
